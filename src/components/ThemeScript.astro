@@ -1,0 +1,8 @@
+<script is:inline>
+  // Esegue subito. Se c'è 'dark' nel localStorage, lo applica a <HTML>.
+  if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+</script>

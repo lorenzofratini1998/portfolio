@@ -1,0 +1,22 @@
+---
+import { siteConfig } from "../../config";
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import ExperienceItem from "./ExperienceItem.astro";
+
+const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
+---
+
+{
+  hasExperience && (
+    <SectionLayout title="Experience" id="experience">
+      <div class="relative">
+        {siteConfig.experience.map((exp, index) => (
+          <ExperienceItem 
+            exp={exp} 
+            isLast={index === siteConfig.experience.length - 1} 
+          />
+        ))}
+      </div>
+    </SectionLayout>
+  )
+}

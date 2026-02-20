@@ -1,0 +1,85 @@
+---
+import { siteConfig } from "../../config";
+import type { ProjectItem } from "../../config";
+
+interface Props {
+  project: ProjectItem;
+}
+
+const { project } = Astro.props;
+
+const Component = project.link ? "a" : "div";
+const linkProps = project.link
+  ? {
+      href: project.link,
+      target: "_blank",
+      rel: "noopener noreferrer",
+    }
+  : {};
+---
+
+<Component
+  {...linkProps}
+  class="group block relative bg-white border border-gray-100 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-gray-200 hover:-translate-y-1"
+>
+  
+  {/* CONTENUTO PRINCIPALE (Padding uniforme) */}
+  <div class="p-6 md:p-8">
+    
+    {/* 1. HEADER: Titolo + Icona Link */}
+    <div class="flex items-start justify-between gap-4 mb-4">
+      <h3 
+        class="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-[var(--accent-color)] transition-colors"
+        style={`--accent-color: ${siteConfig.accentColor}`}
+      >
+        {project.name}
+      </h3>
+
+      {project.link && (
+        <div class="shrink-0 text-gray-400 transition-all duration-300 group-hover:text-gray-900 group-hover:translate-x-1 group-hover:-translate-y-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
+        </div>
+      )}
+    </div>
+
+    {/* 2. DESCRIZIONE */}
+    <p 
+      class="text-base text-gray-600 leading-relaxed mb-6 [&>strong]:font-semibold [&>strong]:text-gray-900"
+      set:html={project.description}
+    />
+
+    {/* 3. TECH STACK */}
+    {project.skills && project.skills.length > 0 && (
+      <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
+        {project.skills.map((skill) => (
+          <span
+            class={`px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
+              project.link ? "group-hover:bg-gray-800" : ""
+            }`}
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    )}
+
+    {/* 4. IMMAGINE (Full Width e Aspect Ratio Originale) */}
+    {project.image && (
+      <div class="mt-6 flex justify-center">
+        <div class="relative p-2 bg-gray-50 border border-gray-100 rounded-2xl shadow-sm inline-block max-w-full">
+          
+          <img
+            src={project.image}
+            alt={`Screenshot of ${project.name}`}
+            class="rounded-xl w-auto max-h-64 md:max-h-80 object-contain block mx-auto border border-gray-200/50"
+          />
+          
+        </div>
+
+      </div>
+    )}
+    
+  </div>
+</Component>

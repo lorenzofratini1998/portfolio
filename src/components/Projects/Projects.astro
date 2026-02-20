@@ -1,0 +1,39 @@
+---
+import { siteConfig } from "../../config";
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import CompactProjectCard from "./CompactProjectCard.astro";
+import ProjectCard from "./ProjectCard.astro";
+
+const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
+const hasMinorProjects = siteConfig.minorProjects && siteConfig.minorProjects.length > 0;
+---
+
+{
+  hasProjects && (
+    <SectionLayout title="Projects" id="projects">
+      {/* 1. FEATURED PROJECTS (Grandi) */}
+    <div class="space-y-12 mb-16">
+      {siteConfig.projects.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+
+    {/* 2. OTHER PROJECTS (Piccoli) */}
+    {hasMinorProjects && (
+      <div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <span class="text-gray-400 font-mono text-lg">/</span> Other Projects
+        </h3>
+        
+        {/* Griglia Responsiva: 1 col su mobile, 2 su tablet, 3 su desktop */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {siteConfig.minorProjects.map((project) => (
+            <CompactProjectCard project={project} />
+          ))}
+        </div>
+      </div>
+    )}
+
+  </SectionLayout>
+  )
+}

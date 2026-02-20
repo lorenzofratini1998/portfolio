@@ -1,0 +1,101 @@
+---
+import { siteConfig } from "../../config";
+import type { EducationItem } from "../../config";
+
+interface Props {
+  education: EducationItem;
+}
+
+const { education } = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
+  
+  <div class="flex gap-4 md:gap-6">
+    
+    {education.logo && (
+      <div class="shrink-0">
+        {education.url ? (
+          <a href={education.url} target="_blank" rel="noopener noreferrer" class="block hover:opacity-75 transition-opacity">
+            <img src={education.logo} alt={`${education.school} logo`} class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border border-gray-200" />
+          </a>
+        ) : (
+          <img src={education.logo} alt={`${education.school} logo`} class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover border border-gray-200" />
+        )}
+      </div>
+    )}
+
+    <div class="flex-1">
+      
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2">
+        <div>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 leading-tight">
+            {education.url ? <a href={education.url} target="_blank" rel="noopener noreferrer" class="hover:opacity-80 transition-opacity">{education.school}</a> : education.school}
+          </h3>
+          <p class="text-base sm:text-lg font-medium mt-1" style={`color: ${siteConfig.accentColor}`}>
+            {education.degree}
+          </p>
+
+          {education.grade && (
+            <p class="text-xs sm:text-sm font-medium text-gray-500 mt-1">
+              Grade: {education.grade}
+            </p>
+          )}
+        </div>
+        
+        <div class="flex flex-col sm:items-end mt-2 sm:mt-0 text-right">
+          <span class="text-xs sm:text-sm text-gray-500 whitespace-nowrap">{education.dateRange}</span>
+          </div>
+      </div>
+
+      {education.thesis && (
+        <div class="mt-2 text-sm text-gray-600">
+          <span class="font-medium text-gray-700">Thesis:</span> {education.thesis}
+        </div>
+      )}
+
+      {education.publication && (
+        <div class="mt-2">
+          <a 
+            href={education.publication.link || "#"} 
+            target="_blank" 
+            class="inline-flex items-center gap-1.5 text-sm font-medium decoration-1 underline-offset-2 hover:opacity-80 transition-opacity transition-colors"
+            style={`color: ${siteConfig.accentColor}`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+              <path fill-rule="evenodd" d="M3 3.5A1.5 1.5 0 014.5 2h6.879a1.5 1.5 0 011.06.44l4.122 4.12A1.5 1.5 0 0117 7.622V16.5a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 013 16.5v-13zm10.857 5.691a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+            </svg>
+            Publication: {education.publication.title}
+          </a>
+        </div>
+      )}
+
+      {education.achievements && education.achievements.length > 0 && (
+        <ul class="space-y-1 mt-3">
+          {education.achievements.map((item) => (
+            <li class="flex items-start">
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 mr-3 flex-shrink-0" />
+              <span class="text-sm text-gray-600 leading-relaxed">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {education.coursework && education.coursework.length > 0 && (
+        <div class="mt-4 pt-3 border-t border-gray-50">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider block mb-2">Relevant Coursework</span>
+          <div class="flex flex-wrap gap-2">
+            {education.coursework.map((course) => (
+              <span class="inline-flex items-center px-2 py-1 rounded bg-gray-50 text-xs font-medium text-gray-600 border border-gray-100">
+                {course}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+      
+    </div>
+  </div>
+</div>

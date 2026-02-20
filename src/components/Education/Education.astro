@@ -1,0 +1,19 @@
+---
+import { siteConfig } from "../../config";
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import EducationItem from "./EducationItem.astro";
+
+const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+---
+
+{
+  hasEducation && (
+    <SectionLayout title="Education" id="education">
+      <div class="space-y-8">
+        {siteConfig.education.map((item) => (
+          <EducationItem education={item} />
+        ))}
+      </div>
+    </SectionLayout>
+  )
+}

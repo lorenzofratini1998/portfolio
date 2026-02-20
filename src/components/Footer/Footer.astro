@@ -1,0 +1,53 @@
+---
+import { siteConfig } from "../../config";
+import { getNavLinks } from "../../utils/nav";
+import { getSocialLinks } from "../../utils/socials";
+import SocialLink from "../SocialLink.astro";
+import FooterBackground from "./FooterBackground.astro";
+
+const navLinks = getNavLinks();
+const socialLinks = getSocialLinks();
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="relative bg-gray-50 border-t border-gray-200">
+  <div class="mx-auto max-w-6xl px-6 py-12 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      
+      {/* Social Links */}
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-x-6">
+          {socialLinks.map((link) => (
+             <SocialLink 
+                name={link.name}
+                url={link.url} 
+                color={link.iconData.color}
+                path={link.iconData.path}
+              />
+          ))}
+        </div>
+      </div>
+
+      {/* Navigazione */}
+      <div class="hidden md:block flex flex-col md:items-end gap-4">
+        <nav class="flex gap-x-8">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        
+        <p class="text-sm text-gray-500">
+          © {currentYear} {siteConfig.name}. All rights reserved.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <FooterBackground />
+</footer>

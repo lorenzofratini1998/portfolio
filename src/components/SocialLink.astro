@@ -1,0 +1,30 @@
+---
+interface Props {
+  name: string;
+  url: string;
+  color: string;
+  path: string;
+}
+
+const { name, url, color, path } = Astro.props;
+const isEmail = name === "Email";
+---
+
+<a
+  href={url}
+  target={isEmail ? "_self" : "_blank"}
+  rel="noopener noreferrer"
+  aria-label={name}
+  class="transition-all duration-300 hover:scale-110 hover:opacity-80"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    style={{ fill: color }}
+    class="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8"
+  >
+    <path d={path} />
+  </svg>
+</a>
