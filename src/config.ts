@@ -91,10 +91,11 @@ export const siteConfig: SiteConfig = {
       name: "Languages & Frameworks",
       items: [
         "Java",
-        "Spring Boot",
-        "Quarkus",
-        "TypeScript",
         "Python",
+        "TypeScript",
+        "Spring Boot",
+        "Spring AI",
+        "Spring Cloud",
         "Node.js",
       ],
       icon: "code",
@@ -108,7 +109,8 @@ export const siteConfig: SiteConfig = {
         "ClickHouse",
         "DynamoDB",
         "Redis",
-        "MongoDB",
+        "Qdrant",
+        "RAG",
         "gRPC"
       ],
       icon: "database",
@@ -116,23 +118,22 @@ export const siteConfig: SiteConfig = {
     {
       name: "Cloud & DevOps",
       items: [
-        "AWS (Lambda, S3, API Gateway)",
+        "AWS (Lambda, S3, API Gateway, SAM)",
         "Kubernetes",
         "Helm",
         "Docker",
-        "AWS SAM",
-        "GitHub Actions",
-        "Jenkins"
+        "CI/CD (GitHub Actions)"
       ],
       icon: "cloud",
     },
     {
-      name: "Applied AI & Engineering",
+      name: "Testing & Architecture",
       items: [
-        "LLM Integration (Gemini)",
-        "RAG Architecture",
-        "Spring AI",
-        "Qdrant (Vector DB)"
+        "JUnit",
+        "Mockito",
+        "Testcontainers",
+        "System Design",
+        "LLM Integration"
       ],
       icon: "cpu",
     }
@@ -194,9 +195,9 @@ export const siteConfig: SiteConfig = {
       logo: "/addvalue.jpg",
       url: "https://www.addvalue.it/en-GB",
       bullets: [
-        "<strong>Achieved 2–5× faster query performance</strong> by migrating analytical workloads from Elasticsearch to ClickHouse, enabling <strong>sub‑second insights on 100M+ procurement records with 95\% analytical accuracy</strong>.",  
-        "<strong>Reduced operational costs</strong> by migrating backend workloads from EC2 to Java‑based AWS Lambda, enabling on‑demand compute instead of always‑on servers.",
-        "<strong>Improved reliability of high‑volume data pipelines</strong> by designing and optimizing backend features for enterprise clients in Europe and the US.",
+        "<strong>Achieved 2–5× increase query performance</strong> by migrating analytical workloads from Elasticsearch to ClickHouse, delivering <strong>sub‑second insights on 100M+ procurement records with 95\% accuracy</strong>.",  
+        "Reduced infrastructure operational costs by <strong> an estimated 30-40\% </strong> by architecting a serverless transition from EC2 instances to Java‑based AWS Lambda environment.",
+        "Designed and optimized highly available backend services for <strong> data-intensive pipelines </strong>, guaranteeing robust reliability for enterprise clients across the US and Europe.",
       ],
     },
     {
@@ -206,9 +207,9 @@ export const siteConfig: SiteConfig = {
       logo: "/blue_reply.jpg",
       url: "https://www.reply.com/blue-reply-italy/it",
       bullets: [
-        "<strong>Delivered 10+ integration microservices</strong> using Apache Camel, Spring Boot, and Quarkus, supporting synchronous and asynchronous workflows across distributed enterprise systems.",
-        "<strong>Reduced coupling between legacy and modern systems</strong> by designing API‑first integrations across SOAP/REST, JMS messaging, and relational databases, accelerating delivery for client teams.",
-        "<strong>Increased maintainability and performance</strong> by migrating 40+ legacy Camel routes to Camel 4, reducing technical debt and improving runtime behavior in production environments.",
+        "Architected and deployed <strong> 10+ critical integration microservices </strong> (Spring Boot, Quarkus, Apache Camel), orchestrating complex asynchronous workflows across distributed enterprise architectures.",
+        "Decoupled legacy and modern infrastructures by implementing <strong> API-first integration patterns </strong> (SOAP/REST,JMS), accelerating feature delivery timelines for client engineering teams.",
+        "Led the migration of 40+ legacy routes to Camel 4, directly reducing technical debt and <strong> enhancing runtime performance </strong> in production environments.",
       ],
     },
   ],
